@@ -1,11 +1,11 @@
 package com.assignment.model;
 
-import javax.persistence.Entity;
+import javax.persistence.Embeddable;
 
 /**
  * @author Rajeev.Loghade Entity class : Address
  */
-@Entity(name = "Address")
+@Embeddable
 public class Address {
 
 	private String state;

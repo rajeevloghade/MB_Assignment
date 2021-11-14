@@ -1,10 +1,14 @@
 package com.assignment.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  * @author Rajeev.Loghade Entity class : Manager
@@ -14,7 +18,7 @@ public class Manager {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "managerid")
+	@Column(name = "managerid_pk")
 	private Integer managerId;
 
 	@Column(name = "firstname")
@@ -40,6 +44,9 @@ public class Manager {
 
 	@Column(name = "company")
 	private String company;
+
+	@OneToMany(mappedBy = "manager", fetch = FetchType.LAZY)
+	private List<Employee> employees;
 
 	public Manager() {
 		super();

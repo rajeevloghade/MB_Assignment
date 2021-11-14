@@ -1,10 +1,13 @@
 package com.assignment.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  * @author Rajeev.Loghade Entity class : Employee
@@ -14,7 +17,7 @@ public class Employee {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "employeeid")
+	@Column(name = "employeeid_pk")
 	private Integer employeeId;
 
 	@Column(name = "firstname")
@@ -41,8 +44,8 @@ public class Employee {
 	@Column(name = "company")
 	private String company;
 
-	@Column(name = "managerid_fk")
-	private Manager managerId;
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Manager manager;
 
 	public Employee() {
 		super();
@@ -62,7 +65,7 @@ public class Employee {
 	}
 
 	public Employee(String firstName, String lastName, String email, String password, String mobile, Address address,
-			String dob, String company, Manager managerId) {
+			String dob, String company, Manager manager) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -72,7 +75,7 @@ public class Employee {
 		this.address = address;
 		this.dob = dob;
 		this.company = company;
-		this.managerId = managerId;
+		this.manager = manager;
 	}
 
 	public Integer getEmployeeId() {
@@ -147,19 +150,11 @@ public class Employee {
 		this.company = company;
 	}
 
-	public Manager getManagerId() {
-		return managerId;
-	}
-
-	public void setManagerId(Manager managerId) {
-		this.managerId = managerId;
-	}
-
 	@Override
 	public String toString() {
 		return "Employee [employeeId=" + employeeId + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
 				+ email + ", password=" + password + ", mobile=" + mobile + ", address=" + address + ", dob=" + dob
-				+ ", company=" + company + ", managerId=" + managerId + "]";
+				+ ", company=" + company + ", manager=" + manager + "]";
 	}
 
 }
