@@ -1,0 +1,49 @@
+DB description:
+Entity:- Manager Properties: 
+managerid, email, firstname,lastname,password,address(state,city,street,pincode),dob,company etc. 
+Entity:- Employee Properties: empId,mId_fk,firstname,lastname,address(state,city,street,pincode),dob,mobile,city etc.
+
+SQL SCRIPT :
+
+Create database manager_employee;
+
+use manager_employee;
+
+Create table Manager (
+managerid int not null primary key AUTO_INCREMENT, 
+email varchar(50), 
+firstname varchar(50),
+lastname varchar(50),
+password varchar(15),
+mobile varchar(15),
+address varchar(100),
+dob varchar(10),
+company varchar(50)
+);
+
+Create table Employee (
+employeeid int not null primary key AUTO_INCREMENT, 
+email varchar(50), 
+firstname varchar(50),
+lastname varchar(50),
+password varchar(15),
+mobile varchar(15),
+address varchar(100),
+dob varchar(10),
+company varchar(50),
+managerid_fk int,
+FOREIGN KEY (managerid_fk) REFERENCES Manager(managerid)
+);
+
+show tables;
+desc Manager;
+desc Employee;
+
+select * from Manager;
+select * from Employee;
+
+insert into manager () values();
+________________________________________________________________________________________________________
+
+CRUD apis and check existing record api
+
