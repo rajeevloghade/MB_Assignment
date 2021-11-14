@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.assignment.dao.IEmployeeDao;
 import com.assignment.model.Employee;
+import com.assignment.model.Manager;
 
 @Service("EmployeeServiceImpl")
 public class EmployeeServiceImpl implements IEmployeeService {
@@ -68,12 +69,20 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	}
 
 	@Override
-	public Boolean getEmployeeByEmail(String email) {
-		log.info("@getEmployeeByEmail invoked with email : {}", email);
-		if (employeeDao.getEmployeeByEmail(email) != null)
-			return true;
-		else
-			return false;
+	public Boolean isEmployeeExistOrNot(String email) {
+		log.info("@isEmployeeExistOrNot in service invoked with email : {}", email);
+		Employee employeeByEmail = employeeDao.getEmployeeByEmail(email);
+		Boolean exist = false;
+		if (employeeByEmail != null) {
+			if (employeeByEmail.getEmail().equals(email)) {
+				log.info("Employee Exist");
+				exist = true;
+			} else {
+				log.info("Employee Doesn't Exist");
+				exist = false;
+			}
+		}
+		return exist;
 	}
 
 }
