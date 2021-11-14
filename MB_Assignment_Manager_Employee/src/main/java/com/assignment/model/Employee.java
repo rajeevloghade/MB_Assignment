@@ -1,19 +1,47 @@
 package com.assignment.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * @author Rajeev.Loghade Entity class : Employee
  */
+@Entity(name = "Employee")
 public class Employee {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "employeeid")
 	private Integer employeeId;
+
+	@Column(name = "firstname")
 	private String firstName;
+
+	@Column(name = "lastname")
 	private String lastName;
+
+	@Column(name = "email")
 	private String email;
+
+	@Column(name = "password")
 	private String password;
+
+	@Column(name = "mobile")
 	private String mobile;
+
+	@Column(name = "address")
 	private Address address;
+
+	@Column(name = "dob")
 	private String dob;
+
+	@Column(name = "company")
 	private String company;
+
+	@Column(name = "managerid_fk")
 	private Manager managerId;
 
 	public Employee() {

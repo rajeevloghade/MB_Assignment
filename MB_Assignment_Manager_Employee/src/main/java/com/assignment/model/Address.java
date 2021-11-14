@@ -1,8 +1,11 @@
 package com.assignment.model;
 
+import javax.persistence.Entity;
+
 /**
  * @author Rajeev.Loghade Entity class : Address
  */
+@Entity(name = "Address")
 public class Address {
 
 	private String state;
