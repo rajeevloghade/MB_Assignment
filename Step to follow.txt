@@ -9,31 +9,43 @@ Create database manager_employee;
 
 use manager_employee;
 
-Create table Manager (
-managerid int not null primary key AUTO_INCREMENT, 
-email varchar(50), 
-firstname varchar(50),
-lastname varchar(50),
-password varchar(15),
-mobile varchar(15),
-address varchar(100),
-dob varchar(10),
-company varchar(50)
-);
-
-Create table Employee (
-employeeid int not null primary key AUTO_INCREMENT, 
-email varchar(50), 
-firstname varchar(50),
-lastname varchar(50),
-password varchar(15),
-mobile varchar(15),
-address varchar(100),
-dob varchar(10),
-company varchar(50),
-managerid_fk int,
-FOREIGN KEY (managerid_fk) REFERENCES Manager(managerid)
-);
+create table employee (
+       employeeid_pk integer not null auto_increment,
+        city varchar(255),
+        pin_code varchar(255),
+        state varchar(255),
+        street varchar(255),
+        company varchar(255),
+        dob varchar(255),
+        email varchar(255),
+        firstname varchar(255),
+        lastname varchar(255),
+        mobile varchar(255),
+        password varchar(255),
+        managerid_fk integer,
+        primary key (employeeid_pk)
+    ) engine=InnoDB;
+    
+    create table manager (
+       managerid_pk integer not null auto_increment,
+        city varchar(255),
+        pin_code varchar(255),
+        state varchar(255),
+        street varchar(255),
+        company varchar(255),
+        dob varchar(255),
+        email varchar(255),
+        firstname varchar(255),
+        lastname varchar(255),
+        mobile varchar(255),
+        password varchar(255),
+        primary key (managerid_pk)
+    ) engine=InnoDB;
+    
+      alter table employee
+       add constraint FK4m38tcpwau9iockvan4xw1k77
+       foreign key (manager_managerid_pk)
+       references manager (managerid_pk);
 
 show tables;
 desc Manager;
