@@ -8,5 +8,5 @@ import com.assignment.model.Employee;
 @Repository("IEmployeeDao")
 public interface IEmployeeDao extends JpaRepository<Employee, Integer> {
 
-	Employee getEmployeeByEmployeeId(Integer employeeId);
+	Employee getEmployeeByEmail(String email);
 }

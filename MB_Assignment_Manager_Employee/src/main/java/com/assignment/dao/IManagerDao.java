@@ -8,5 +8,5 @@ import com.assignment.model.Manager;
 @Repository("IManagerDao")
 public interface IManagerDao extends JpaRepository<Manager, Integer> {
 
-	Manager getManagerByManagerId(Integer managerId);
+	Manager getManagerByEmail(String email);
 }

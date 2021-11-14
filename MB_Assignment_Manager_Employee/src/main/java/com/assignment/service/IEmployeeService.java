@@ -16,4 +16,6 @@ public interface IEmployeeService {
 
 	Employee getEmployeeByEmployeeId(Integer employeeId);
 
+	Boolean getEmployeeByEmail(String email);
+
 }

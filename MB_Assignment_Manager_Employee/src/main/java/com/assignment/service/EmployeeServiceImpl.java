@@ -67,4 +67,13 @@ public class EmployeeServiceImpl implements IEmployeeService {
 		return employeeDao.save(employee);
 	}
 
+	@Override
+	public Boolean getEmployeeByEmail(String email) {
+		log.info("@getEmployeeByEmail invoked with email : {}", email);
+		if (employeeDao.getEmployeeByEmail(email) != null)
+			return true;
+		else
+			return false;
+	}
+
 }
