@@ -45,5 +45,11 @@ select * from Employee;
 insert into manager () values();
 ________________________________________________________________________________________________________
 
+Create spring boot maven project
+add dependencies of spring core, mvc, data jpa, mysql,security, hibernate
+
+
+
+
 CRUD apis and check existing record api
 
