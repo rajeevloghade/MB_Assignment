@@ -9,4 +9,5 @@ import com.assignment.model.Manager;
 public interface IManagerDao extends JpaRepository<Manager, Integer> {
 
 	Manager getManagerByEmail(String email);
+
 }
