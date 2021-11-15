@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.assignment.dao.IEmployeeDao;
+import com.assignment.exception.SomethingWentWrong;
 import com.assignment.model.Employee;
-import com.assignment.model.Manager;
 
 @Service("EmployeeServiceImpl")
 public class EmployeeServiceImpl implements IEmployeeService {
@@ -46,18 +46,24 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	public Employee updateEmployee(Employee employee) {
 		log.info("@updateEmployee invoked with employeeId : {}", employee.getEmployeeId());
 
-		Optional<Employee> employeeById = employeeDao.findById(employee.getEmployeeId());
 		Employee updatedEmployee = null;
-		if (employeeById.isPresent()) {
-			updatedEmployee = employeeById.get();
-			updatedEmployee.setFirstName(employee.getFirstName());
-			updatedEmployee.setLastName(employee.getLastName());
-			updatedEmployee.setDob(employee.getDob());
-			updatedEmployee.setCompany(employee.getCompany());
-			updatedEmployee.setMobile(employee.getMobile());
-			updatedEmployee.setAddress(employee.getAddress());
-			employeeDao.save(updatedEmployee);
-			log.info("EMPLOYEE UPDATED : {}", updatedEmployee);
+		if (isEmployeeExistOrNot(employee.getEmail())) {
+			log.info("@updateEmployee got exception : ");
+			throw new SomethingWentWrong("Employee already exist with this email...!");
+		} else {
+			Optional<Employee> employeeById = employeeDao.findById(employee.getEmployeeId());
+			if (employeeById.isPresent()) {
+				updatedEmployee = employeeById.get();
+				log.info("Updating employee values");
+				updatedEmployee.setFirstName(employee.getFirstName());
+				updatedEmployee.setLastName(employee.getLastName());
+				updatedEmployee.setDob(employee.getDob());
+				updatedEmployee.setCompany(employee.getCompany());
+				updatedEmployee.setMobile(employee.getMobile());
+				updatedEmployee.setAddress(employee.getAddress());
+				employeeDao.save(updatedEmployee);
+				log.info("EMPLOYEE UPDATED : {}", updatedEmployee);
+			}
 		}
 		return updatedEmployee;
 	}
@@ -65,7 +71,14 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	@Override
 	public Employee addEmployee(Employee employee) {
 		log.info("@addEmployee invoked with new employeeObject : {}", employee);
-		return employeeDao.save(employee);
+		Employee newEmployee;
+		if (isEmployeeExistOrNot(employee.getEmail())) {
+			log.info("@addEmployee got exception : ");
+			throw new SomethingWentWrong("Employee already exist with this email...!");
+		} else {
+			newEmployee = employeeDao.save(employee);
+		}
+		return newEmployee;
 	}
 
 	@Override

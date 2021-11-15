@@ -32,9 +32,9 @@ public class EmployeeRestImpl implements IEmployeeRest {
 		return "Hello Employee";
 	}
 
-	@GetMapping("/getEmployeeById/{id}")
+	@GetMapping("/getEmployeeById/{employeeId}")
 	@Override
-	public Employee getEmployeeByEmployeeId(@PathVariable("id") Integer employeeId) {
+	public Employee getEmployeeByEmployeeId(@PathVariable("employeeId") Integer employeeId) {
 		log.trace("@getEmployeeById invoked with employeeId : {}", employeeId);
 		return employeeService.getEmployeeByEmployeeId(employeeId);
 	}
@@ -48,9 +48,9 @@ public class EmployeeRestImpl implements IEmployeeRest {
 
 	@PostMapping("/addEmployee")
 	@Override
-	public Employee addEmployee(@RequestBody Employee employeeModel) {
-		log.trace("@addEmployee invoked with new employeeObject : {}", employeeModel);
-		return employeeService.addEmployee(employeeModel);
+	public Employee addEmployee(@RequestBody Employee employee) {
+		log.trace("@addEmployee invoked with new employeeObject : {}", employee);
+		return employeeService.addEmployee(employee);
 	}
 
 	@PutMapping("/updateEmployee")
@@ -60,17 +60,11 @@ public class EmployeeRestImpl implements IEmployeeRest {
 		return employeeService.updateEmployee(employee);
 	}
 
-	@DeleteMapping("/deleteEmployee/{id}")
+	@DeleteMapping("/deleteEmployee/{employeeId}")
 	@Override
-	public void deleteEmployee(@PathVariable("id") Integer id) {
-		log.trace("@deleteEmployee invoked with employeeId : {}", id);
-		employeeService.deleteEmployee(id);
-	}
-
-	@DeleteMapping("deleteDemo/{id}")
-	public void deleteDemo(@PathVariable("id") Integer id) {
-		log.trace("@deleteEmployee invoked with employeeId : {}", id);
-		employeeService.deleteEmployee(id);
+	public void deleteEmployee(@PathVariable("employeeId") Integer employeeId) {
+		log.trace("@deleteEmployee invoked with employeeId : {}", employeeId);
+		employeeService.deleteEmployee(employeeId);
 	}
 
 	@GetMapping("/isEmployeeExistOrNot")
