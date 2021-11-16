@@ -5,10 +5,12 @@ export class Employee {
   'email': string;
   'password': string;
   'mobile': string;
-  'state': string;
-  'city': string;
-  'street': string;
-  'pinCode': string;
   'dob': string;
+  'address': {
+    'state': string;
+    'city': string;
+    'street': string;
+    'pinCode': string;
+  };
   'company': string;
 }
