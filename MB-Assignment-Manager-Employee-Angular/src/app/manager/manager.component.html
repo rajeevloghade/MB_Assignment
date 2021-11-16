@@ -19,6 +19,9 @@
                 <button type="submit" class="btn btn-black">Login</button>
                 <button style="margin-left: 1%;" type="submit" class="btn btn-secondary">Register</button>
             </form>
+            <div [hidden]="!loginFailed">
+                <small class="text-danger">Login failed! Please try again</small>
+            </div>
         </div>
     </div>
-</div>
+</div><br>

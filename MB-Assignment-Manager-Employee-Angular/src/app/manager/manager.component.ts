@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from 'src/employee';
+import { Router } from '@angular/router';
 import { Manager } from 'src/manager';
 import { ManagerService } from '../manager.service';
 
@@ -11,8 +11,9 @@ import { ManagerService } from '../manager.service';
 export class ManagerComponent implements OnInit {
   public loginStatus: any = false;
   public manager = new Manager();
+  public loginFailed: boolean = false;
 
-  constructor(private _managerService: ManagerService) {}
+  constructor(private _managerService: ManagerService,private route:Router) {}
 
   ngOnInit(): void {}
 
@@ -26,12 +27,16 @@ export class ManagerComponent implements OnInit {
         if(this.loginStatus){
           this.redirectToEmployeeList();
         }else{
-
+          this.loginFailed=true;
+          this.redirectToManagerLogin();
         }
       });
   }
+  redirectToManagerLogin() { 
+    this.route.navigate(['/managerLogin']);
+  }
   redirectToEmployeeList() {
-    throw new Error('Method not implemented.');
+    this.route.navigate(['/employeeList']);
   }
 
   onSubmit() {

@@ -5,6 +5,7 @@ import { ManagerComponent } from './manager/manager.component';
 const routes: Routes = [
   { path: '', redirectTo: 'managerLogin', pathMatch: 'full' },
   { path: 'managerLogin', component: ManagerComponent },
+  { path: 'employeeList', component: ManagerComponent },
 ];
 
 @NgModule({
