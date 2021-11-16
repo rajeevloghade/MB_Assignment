@@ -5,10 +5,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EmployeeListComponent } from './employee-list/employee-list.component';
 
 @NgModule({
-  declarations: [AppComponent, routingComponents, EmployeeListComponent],
+  declarations: [AppComponent, routingComponents],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule,FormsModule],
   providers: [],
   bootstrap: [AppComponent],
