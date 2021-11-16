@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ManagerService {
-  private url = 'http://localhost:8085/mgr';
+  private url = 'http://localhost:8085/mgr/';
 
   constructor(private _httpService: HttpClient) {}
 
@@ -18,6 +18,6 @@ export class ManagerService {
     const params = new HttpParams()
       .set('email', email)
       .set('password', password);
-    return this._httpService.get(this.url+'/managerLoginVerification', { params });
+    return this._httpService.get(this.url+'managerLoginVerification', { params });
   }
 }
