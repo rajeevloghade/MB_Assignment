@@ -14,4 +14,8 @@ export class EmployeeService {
   getAllEmployee() {
     return this._httpService.get<Employee[]>(this.url + 'getAllEmployee');
   }
+
+  deleteEmployee(employeeId: number) {
+    return this._httpService.delete(this.url + 'deleteEmployee/' + employeeId);
+  }
 }
