@@ -1,3 +1,11 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <button type="button" class="btn btn-success" (click)="goToAddEmployee()">Add Employee</button> &nbsp;&nbsp;
+    <form class="form-inline">
+        <input class="form-control " type="text" placeholder="Search Employee">&nbsp;
+        <button class="btn btn-success" type="submit">Search</button>
+    </form>
+</nav>
+
 <table class="table">
     <thead class="thead-dark">
         <tr>
@@ -30,10 +38,12 @@
                         style="font-size:20px "></i></button>
             </td>
             <td>
-                <button type="button " (click)="deleteEmployee(employee.employeeId)" class="btn btn-default "><i class="fa fa-trash" style="font-size:20px"></i></button>
+                <button type="button " (click)="deleteEmployee(employee.employeeId)" class="btn btn-default "><i
+                        class="fa fa-trash" style="font-size:20px"></i></button>
             </td>
             <td>
-                <button type="button " (click)="getEmployeeById(employee.employeeId)" class="btn btn-default "><i class="fa fa-info" style="font-size:20px"></i></button>
+                <button type="button " (click)="getEmployeeById(employee.employeeId)" class="btn btn-default "><i
+                        class="fa fa-info" style="font-size:20px"></i></button>
             </td>
         </tr>
     </tbody>

@@ -36,4 +36,8 @@ export class EmployeeListComponent implements OnInit {
   getEmployeeById(employeeId: number) {
     this.route.navigate(['employeeDetails',employeeId]);
   }
+
+  goToAddEmployee(){
+    this.route.navigate(['addEmployee']);
+  }
 }
