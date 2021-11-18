@@ -24,4 +24,11 @@ export class EmployeeService {
       this.url + 'getEmployeeById/' + employeeId
     );
   }
+
+  addEmployee(employee: Employee) {
+    let header = { 'content-type': 'application/json' };
+    let options = { headers: header };
+    console.log(employee);
+    return this._httpService.post(this.url + 'addEmployee', employee, options);
+  }
 }

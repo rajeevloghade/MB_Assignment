@@ -1,1 +1,86 @@
-<p>employee-create works!</p>
+<div class="sidenav">
+    <div class="login-main-text">
+        <h1>Add<br> Employee</h1>
+        <p>Please enter all the details of employee.</p>
+    </div>
+</div>
+<div class="main">
+    <div class="col-md-6 col-sm-12">
+        <div class="login-form">
+            <form #managerLogin="ngForm" (ngSubmit)="onSubmit()">
+                <!-- {{managerLogin.value|json}}
+                <hr>{{employee|json}} -->
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input class="form-control" type="text" #firstName='ngModel' [class.is-invalid]='firstName.invalid && firstName.touched' [(ngModel)]="employee.firstName" name="firstName" placeholder="First Name" required>
+                    <small class="text-danger" [class.d-none]='firstName.valid || firstName.untouched'>First name is
+                        required</small>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input class="form-control" type="text" #lastName='ngModel' [class.is-invalid]='lastName.invalid && lastName.touched' [(ngModel)]="employee.lastName" name="lastName" placeholder="Last Name" required>
+                    <small class="text-danger" [class.d-none]='lastName.valid || lastName.untouched'>First name is
+                        required</small>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" #email='ngModel' pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [class.is-invalid]='email.invalid && email.touched' [(ngModel)]="employee.email" class="form-control" name="email" placeholder="Email" required>
+                    <!-- <small class="text-danger" [class.d-none]='email.valid || email.untouched'>Email is required</small> -->
+                    <div *ngIf="email.errors && (email.invalid && email.touched)">
+                        <small class="text-danger" *ngIf='email.errors.required'>Email is required</small>
+                        <small class="text-danger" *ngIf='email.errors.pattern'>Email is not valid</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Mobile</label>
+                    <input class="form-control" #mobile='ngModel' [(ngModel)]='employee.mobile' pattern="^\d{10}$" [class.is-invalid]='mobile.invalid && mobile.touched' type="tel" name="mobile" placeholder="Mobile" required>
+                    <!-- <small class="text-danger" [class.d-none]='phone.valid || phone.untouched'>Phone is required and must be of 10 digits</small> -->
+                    <div *ngIf="mobile.errors && (mobile.invalid && mobile.touched)">
+                        <small class="text-danger" *ngIf='mobile.errors.required'>Phone is required</small>
+                        <small class="text-danger" *ngIf='mobile.errors.pattern'>Phone must be of 10 digits</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input class="form-control" type="datetime" #dob='ngModel' [class.is-invalid]='dob.invalid && dob.touched' [(ngModel)]="employee.dob" name="dob" placeholder="Date of Birth" required>
+                    <small class="text-danger" [class.d-none]='dob.valid || dob.untouched'>DOB is
+                        required</small>
+                </div>
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input class="form-control" type="text" #company='ngModel' [class.is-invalid]='company.invalid && company.touched' [(ngModel)]="employee.company" name="company" placeholder="Company" required>
+                    <small class="text-danger" [class.d-none]='company.valid || company.untouched'>Company is
+                        required</small>
+                </div>
+
+                <!-- <div class="form-group">
+                    <label for="address">Address</label>
+                    <input class="form-control" type="" #address='ngModel' [class.is-invalid]='address.invalid && address.touched' [(ngModel)]="employee.address" name="address" placeholder="Address" required>
+                    <small class="text-danger" [class.d-none]='address.valid || address.untouched'>Address is
+                        required</small>
+                </div> -->
+
+
+                <!-- <div ngModelGroup='employee.address'>
+                    <div class="form-group">
+                        <label for="street">Street</label>
+                        <input class="form-control" type="text" name="street" [(ngModel)]="employee.address">
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input class="form-control" type="text" name="city" [(ngModel)]="employee.address">
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <input class="form-control" type="text" name="state" [(ngModel)]="employee.address">
+                    </div>
+                    <div class="form-group">
+                        <label for="pinCode">Postal Code</label>
+                        <input class="form-control" type="text" name="pinCode" [(ngModel)]="employee.address">
+                    </div>
+                </div> -->
+                <button type="submit" [disabled]='managerLogin.form.invalid' class="btn btn-black">Add</button>
+            </form>
+        </div>
+    </div>
+</div>
