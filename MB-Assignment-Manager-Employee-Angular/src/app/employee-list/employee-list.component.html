@@ -15,8 +15,8 @@
             <th scope="col">Email</th>
             <th scope="col">Mobile</th>
             <th scope="col">Date of Birth</th>
-            <th scope="col">Address</th>
             <th scope="col">Company</th>
+            <th scope="col">Address</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
             <th scope="col">View</th>
@@ -30,9 +30,9 @@
             <td>{{employee.email}}</td>
             <td>{{employee.mobile}}</td>
             <td>{{employee.dob}}</td>
+            <td>{{employee.company}}</td>
             <td>{{employee.address.street +", "+ employee.address.city +", "+ employee.address.state +", "+ employee.address.pinCode}}
             </td>
-            <td>{{employee.company}}</td>
             <td>
                 <button type="button" class="btn btn-default "><i class="fa fa-edit "
                         style="font-size:20px "></i></button>
