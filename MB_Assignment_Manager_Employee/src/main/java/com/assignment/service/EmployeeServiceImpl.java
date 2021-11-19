@@ -26,7 +26,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	}
 
 	@Override
-	public Employee getEmployeeByEmployeeId(Integer employeeId) {
+	public Employee getEmployeeById(Integer employeeId) {
 		log.info("@getEmployeeById invoked with employeeId : {}", employeeId);
 		Optional<Employee> employeeById = employeeDao.findById(employeeId);
 		Employee employeeModel = null;
@@ -47,23 +47,19 @@ public class EmployeeServiceImpl implements IEmployeeService {
 		log.info("@updateEmployee invoked with employeeId : {}", employee.getEmployeeId());
 
 		Employee updatedEmployee = null;
-		if (isEmployeeExistOrNot(employee.getEmail())) {
-			log.info("@updateEmployee got exception : ");
-			throw new SomethingWentWrong("Employee already exist with this email...!");
-		} else {
-			Optional<Employee> employeeById = employeeDao.findById(employee.getEmployeeId());
-			if (employeeById.isPresent()) {
-				updatedEmployee = employeeById.get();
-				log.info("Updating employee values");
-				updatedEmployee.setFirstName(employee.getFirstName());
-				updatedEmployee.setLastName(employee.getLastName());
-				updatedEmployee.setDob(employee.getDob());
-				updatedEmployee.setCompany(employee.getCompany());
-				updatedEmployee.setMobile(employee.getMobile());
-				updatedEmployee.setAddress(employee.getAddress());
-				employeeDao.save(updatedEmployee);
-				log.info("EMPLOYEE UPDATED : {}", updatedEmployee);
-			}
+		Optional<Employee> employeeById = employeeDao.findById(employee.getEmployeeId());
+		if (employeeById.isPresent()) {
+			updatedEmployee = employeeById.get();
+			log.info("Updating employee values");
+			updatedEmployee.setFirstName(employee.getFirstName());
+			updatedEmployee.setLastName(employee.getLastName());
+			updatedEmployee.setDob(employee.getDob());
+			updatedEmployee.setCompany(employee.getCompany());
+			updatedEmployee.setMobile(employee.getMobile());
+			updatedEmployee.setAddress(employee.getAddress());
+			employeeDao.save(updatedEmployee);
+			log.info("EMPLOYEE UPDATED : {}", updatedEmployee);
+
 		}
 		return updatedEmployee;
 	}
@@ -73,7 +69,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
 		log.info("@addEmployee invoked with new employeeObject : {}", employee);
 		Employee newEmployee = null;
 		try {
-			if (isEmployeeExistOrNot(employee.getEmail())) {
+			if (isEmployeeExistOrNotByEmail(employee.getEmail())) {
 				log.info("@addEmployee got exception");
 				throw new SomethingWentWrong();
 			} else {
@@ -86,18 +82,16 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	}
 
 	@Override
-	public Boolean isEmployeeExistOrNot(String email) {
+	public Boolean isEmployeeExistOrNotByEmail(String email) {
 		log.info("@isEmployeeExistOrNot in service invoked with email : {}", email);
-		Employee employeeByEmail = employeeDao.getEmployeeByEmail(email);
+		Employee employeeByEmail = employeeDao.findByEmail(email);
 		Boolean exist = false;
 		if (employeeByEmail != null) {
-			if (employeeByEmail.getEmail().equals(email)) {
-				log.info("Employee Exist");
-				exist = true;
-			} else {
-				log.info("Employee Doesn't Exist");
-				exist = false;
-			}
+			log.info("Employee Exist with email : {}", email);
+			exist = true;
+		} else {
+			log.info("Employee Doesn't Exist with email : {}", email);
+			exist = false;
 		}
 		return exist;
 	}

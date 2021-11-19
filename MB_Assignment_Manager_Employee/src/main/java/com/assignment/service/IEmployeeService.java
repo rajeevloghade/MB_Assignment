@@ -8,14 +8,14 @@ public interface IEmployeeService {
 
 	List<Employee> getAllEmployee();
 
-	Employee addEmployee(Employee employeeModel);
+	Employee getEmployeeById(Integer employeeId);
 
-	Employee updateEmployee(Employee employeeModel);
+	void deleteEmployee(Integer employeeId);
 
-	void deleteEmployee(Integer id);
+	Employee updateEmployee(Employee employee);
 
-	Employee getEmployeeByEmployeeId(Integer employeeId);
+	Employee addEmployee(Employee employee);
 
-	Boolean isEmployeeExistOrNot(String email);
+	Boolean isEmployeeExistOrNotByEmail(String email);
 
 }

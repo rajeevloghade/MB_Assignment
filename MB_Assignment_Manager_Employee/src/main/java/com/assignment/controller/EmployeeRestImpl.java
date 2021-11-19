@@ -38,7 +38,7 @@ public class EmployeeRestImpl implements IEmployeeRest {
 	@Override
 	public Employee getEmployeeByEmployeeId(@PathVariable("employeeId") Integer employeeId) {
 		log.trace("@getEmployeeById invoked with employeeId : {}", employeeId);
-		return employeeService.getEmployeeByEmployeeId(employeeId);
+		return employeeService.getEmployeeById(employeeId);
 	}
 
 	@GetMapping("/getAllEmployee")
@@ -73,7 +73,7 @@ public class EmployeeRestImpl implements IEmployeeRest {
 	@Override
 	public Boolean isEmployeeExistOrNot(@RequestParam("email") String email) {
 		log.trace("@isEmployeeExistOrNot invoked with email : {}", email);
-		return employeeService.isEmployeeExistOrNot(email);
+		return employeeService.isEmployeeExistOrNotByEmail(email);
 	}
 
 }
