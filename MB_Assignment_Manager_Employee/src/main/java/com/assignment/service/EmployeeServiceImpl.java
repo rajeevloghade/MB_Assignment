@@ -71,12 +71,16 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	@Override
 	public Employee addEmployee(Employee employee) {
 		log.info("@addEmployee invoked with new employeeObject : {}", employee);
-		Employee newEmployee;
-		if (isEmployeeExistOrNot(employee.getEmail())) {
-			log.info("@addEmployee got exception : ");
-			throw new SomethingWentWrong("Employee already exist with this email...!");
-		} else {
-			newEmployee = employeeDao.save(employee);
+		Employee newEmployee = null;
+		try {
+			if (isEmployeeExistOrNot(employee.getEmail())) {
+				log.info("@addEmployee got exception");
+				throw new SomethingWentWrong();
+			} else {
+				newEmployee = employeeDao.save(employee);
+			}
+		} catch (SomethingWentWrong somethingWentWrong) {
+			log.info("Employee already exist with this email...!", somethingWentWrong);
 		}
 		return newEmployee;
 	}
