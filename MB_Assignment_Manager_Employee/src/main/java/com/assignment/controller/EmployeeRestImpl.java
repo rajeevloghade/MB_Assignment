@@ -81,4 +81,13 @@ public class EmployeeRestImpl implements IEmployeeRest {
 		return employeeService.isEmployeeExistOrNotByEmail(email);
 	}
 
+	@GetMapping("/searchEmployee")
+	@Override
+	public List<Employee> searchEmployee(String name) {
+		log.trace("@searchEmployee invoked with name : {}", name);
+		return employeeService.searchEmployee(name);
+	}
+	
+	
+
 }

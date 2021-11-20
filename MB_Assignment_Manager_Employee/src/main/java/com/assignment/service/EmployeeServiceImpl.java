@@ -96,4 +96,18 @@ public class EmployeeServiceImpl implements IEmployeeService {
 		return exist;
 	}
 
+	@Override
+	public List<Employee> searchEmployee(String name) {
+		log.info("@searchEmployee in service invoked with name : {}", name);
+		List<Employee> employeeByName = employeeDao.findByFirstName(name);
+		if (!employeeByName.isEmpty()) {
+			log.info("findByFirstName : {}", employeeByName.size());
+			return employeeByName;
+		} else {
+			employeeByName = employeeDao.findByLastName(name);
+			log.info("findByLastName : {}", employeeByName.size());
+			return employeeByName;
+		}
+	}
+
 }

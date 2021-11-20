@@ -18,4 +18,6 @@ public interface IEmployeeRest {
 
 	Boolean isEmployeeExistOrNot(String email);
 
+	List<Employee> searchEmployee(String name);
+
 }
