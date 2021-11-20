@@ -55,19 +55,27 @@
                 <div ngModelGroup='address'>
                     <div class="form-group">
                         <label for="street">Street</label>
-                        <input class="form-control" type="text" name="street" [(ngModel)]='address.street'>
+                        <input class="form-control" #street='ngModel' [class.is-invalid]='street.invalid && street.touched' type="text" name="street" [(ngModel)]='address.street' placeholder="Street" required>
+                        <small class="text-danger" [class.d-none]='street.valid || street.untouched'>Street is
+                            required</small>
                     </div>
                     <div class="form-group">
                         <label for="city">City</label>
-                        <input class="form-control" type="text" name="city" [(ngModel)]='address.city'>
+                        <input class="form-control" #city='ngModel' [class.is-invalid]='city.invalid && city.touched' type="text" name="city" [(ngModel)]='address.city' placeholder="City" required>
+                        <small class="text-danger" [class.d-none]='city.valid || city.untouched'>City is
+                            required</small>
                     </div>
                     <div class="form-group">
                         <label for="state">State</label>
-                        <input class="form-control" type="text" name="state" [(ngModel)]='address.state'>
+                        <input class="form-control" #state='ngModel' [class.is-invalid]='state.invalid && state.touched' type="text" name="state" [(ngModel)]='address.state' placeholder="State" required>
+                        <small class="text-danger" [class.d-none]='state.valid || state.untouched'>State is
+                            required</small>
                     </div>
                     <div class="form-group">
                         <label for="pinCode">Postal Code</label>
-                        <input class="form-control" type="text" name="pinCode" [(ngModel)]='address.pinCode'>
+                        <input class="form-control" #pinCode='ngModel' [class.is-invalid]='pinCode.invalid && pinCode.touched' type="text" name="pinCode" [(ngModel)]='address.pinCode' placeholder="Postal Code" required>
+                        <small class="text-danger" [class.d-none]='pinCode.valid || pinCode.untouched'>Postal Code is
+                            required</small>
                     </div>
                 </div>
                 <button type="submit" [disabled]='managerLogin.form.invalid' class="btn btn-black">Add</button>
