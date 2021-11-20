@@ -11,7 +11,7 @@ import { EmployeeService } from '../employee.service';
 })
 export class EmployeeCreateComponent implements OnInit {
   public employee = new Employee();
-  public address=new Address();
+  public address = new Address();
   constructor(
     private _employeeService: EmployeeService,
     private route: Router
@@ -24,11 +24,12 @@ export class EmployeeCreateComponent implements OnInit {
   }
 
   addEmployee() {
-    this.employee.address=this.address;
+    this.employee.address = this.address;
     this._employeeService
       .addEmployee(this.employee)
       .subscribe((response: any) => {
         console.log(response);
+        this.reset();
         if (response != null) {
           this.gotoEmployeeList();
         } else {
@@ -42,5 +43,20 @@ export class EmployeeCreateComponent implements OnInit {
 
   goToAddEmployee() {
     this.route.navigate(['addEmployee']);
+  }
+
+  private reset() {
+    console.log('Resetting');
+    (this.employee.firstName = ''),
+      (this.employee.lastName = ''),
+      (this.employee.email = ''),
+      (this.employee.password = ''),
+      (this.employee.mobile = ''),
+      (this.employee.dob = ''),
+      (this.employee.company = ''),
+      (this.address.street = ''),
+      (this.address.city = ''),
+      (this.address.state = ''),
+      (this.address.pinCode = '');
   }
 }
