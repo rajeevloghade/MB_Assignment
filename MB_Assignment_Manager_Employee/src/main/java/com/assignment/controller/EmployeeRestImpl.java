@@ -2,6 +2,8 @@ package com.assignment.controller;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +50,7 @@ public class EmployeeRestImpl implements IEmployeeRest {
 		return employeeService.getAllEmployee();
 	}
 
+	@Transactional
 	@PostMapping("/addEmployee")
 	@Override
 	public Employee addEmployee(@RequestBody Employee employee) {
@@ -55,6 +58,7 @@ public class EmployeeRestImpl implements IEmployeeRest {
 		return employeeService.addEmployee(employee);
 	}
 
+	@Transactional
 	@PutMapping("/updateEmployee")
 	@Override
 	public Employee updateEmployee(@RequestBody Employee employee) {
@@ -62,6 +66,7 @@ public class EmployeeRestImpl implements IEmployeeRest {
 		return employeeService.updateEmployee(employee);
 	}
 
+	@Transactional
 	@DeleteMapping("/deleteEmployee/{employeeId}")
 	@Override
 	public void deleteEmployee(@PathVariable("employeeId") Integer employeeId) {
