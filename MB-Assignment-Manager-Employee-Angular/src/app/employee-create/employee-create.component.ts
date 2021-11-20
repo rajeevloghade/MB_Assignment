@@ -12,6 +12,7 @@ import { EmployeeService } from '../employee.service';
 export class EmployeeCreateComponent implements OnInit {
   public employee = new Employee();
   public address = new Address();
+  public submitted=false;
   constructor(
     private _employeeService: EmployeeService,
     private route: Router
@@ -24,6 +25,7 @@ export class EmployeeCreateComponent implements OnInit {
   }
 
   addEmployee() {
+    this.submitted=true;
     this.employee.address = this.address;
     this._employeeService
       .addEmployee(this.employee)

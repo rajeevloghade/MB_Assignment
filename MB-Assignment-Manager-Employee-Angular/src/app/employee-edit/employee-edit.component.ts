@@ -13,6 +13,7 @@ export class EmployeeEditComponent implements OnInit {
   private employeeId: number | undefined;
   public employee: Employee = new Employee();
   public address: Address = new Address();
+  public submitted=false;
 
   constructor(
     private _employeeService: EmployeeService,
@@ -42,15 +43,33 @@ export class EmployeeEditComponent implements OnInit {
   }
 
   updateEmployee() {
+    this.submitted=true;
     this._employeeService
       .updateEmployee(this.employee)
       .subscribe((employeeData) => {
         (this.employee = employeeData),
           console.log('updated emp: ', this.employee);
+          this.reset();
+          this.gotoEmployeeList();
       });
   }
 
   gotoEmployeeList() {
     this.route.navigate(['employeeList']);
+  }
+
+  private reset() {
+    console.log('Resetting');
+    (this.employee.firstName = ''),
+      (this.employee.lastName = ''),
+      (this.employee.email = ''),
+      (this.employee.password = ''),
+      (this.employee.mobile = ''),
+      (this.employee.dob = ''),
+      (this.employee.company = ''),
+      (this.address.street = ''),
+      (this.address.city = ''),
+      (this.address.state = ''),
+      (this.address.pinCode = '');
   }
 }
