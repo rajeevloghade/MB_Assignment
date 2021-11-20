@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Employee } from 'src/employee';
@@ -37,5 +37,13 @@ export class EmployeeService {
       this.url + 'updateEmployee',
       employee
     );
+  }
+
+  searchEmployee(employeeName: string ) {
+    let params = new HttpParams();
+    params = params.append('name', employeeName);
+    return this._httpService.get<Employee[]>(this.url + 'searchEmployee', {
+      params: params,
+    });
   }
 }

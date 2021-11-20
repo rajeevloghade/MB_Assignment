@@ -10,6 +10,7 @@ import { EmployeeService } from '../employee.service';
 })
 export class EmployeeListComponent implements OnInit {
   public employees: Employee[] = [];
+  public employeeName: string ='';
   constructor(
     private _employeeService: EmployeeService,
     private route: Router
@@ -34,13 +35,23 @@ export class EmployeeListComponent implements OnInit {
   }
 
   getEmployeeById(employeeId: number) {
-    this.route.navigate(['employeeDetails',employeeId]);
+    this.route.navigate(['employeeDetails', employeeId]);
   }
 
-  goToAddEmployee(){
+  goToAddEmployee() {
     this.route.navigate(['addEmployee']);
   }
-  updateEmployee(employeeId: number){
-    this.route.navigate(['updateEmployee',employeeId]);
+  updateEmployee(employeeId: number) {
+    this.route.navigate(['updateEmployee', employeeId]);
+  }
+
+  searchEmployee() {
+    console.log(this.employeeName);
+    this._employeeService
+      .searchEmployee(this.employeeName)
+      .subscribe((employeeByName) => {
+        this.employees = employeeByName;
+        console.log(this.employees);
+      });
   }
 }
