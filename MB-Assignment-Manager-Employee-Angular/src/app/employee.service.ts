@@ -31,4 +31,11 @@ export class EmployeeService {
     console.log(employee);
     return this._httpService.post(this.url + 'addEmployee', employee, options);
   }
+
+  updateEmployee(employee: Employee) {
+    return this._httpService.put<Employee>(
+      this.url + 'updateEmployee',
+      employee
+    );
+  }
 }

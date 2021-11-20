@@ -40,4 +40,7 @@ export class EmployeeListComponent implements OnInit {
   goToAddEmployee(){
     this.route.navigate(['addEmployee']);
   }
+  updateEmployee(employeeId: number){
+    this.route.navigate(['updateEmployee',employeeId]);
+  }
 }

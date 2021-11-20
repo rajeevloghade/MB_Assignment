@@ -34,7 +34,7 @@
             <td>{{employee.address.street +", "+ employee.address.city +", "+ employee.address.state +", "+ employee.address.pinCode}}
             </td>
             <td>
-                <button type="button" class="btn btn-default "><i class="fa fa-edit "
+                <button type="button" (click)="updateEmployee(employee.employeeId)" class="btn btn-default "><i class="fa fa-edit "
                         style="font-size:20px "></i></button>
             </td>
             <td>
