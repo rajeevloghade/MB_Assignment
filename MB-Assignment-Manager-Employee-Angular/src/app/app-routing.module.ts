@@ -4,6 +4,7 @@ import { EmployeeCreateComponent } from './employee-create/employee-create.compo
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { ManagerSignupComponent } from './manager-signup/manager-signup.component';
 import { ManagerComponent } from './manager/manager.component';
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'employeeList', component: EmployeeListComponent },
   { path: 'employeeDetails/:employeeId', component: EmployeeDetailsComponent },
   { path: 'addEmployee', component: EmployeeCreateComponent },
-  { path: 'updateEmployee/:employeeId', component: EmployeeEditComponent }
+  { path: 'updateEmployee/:employeeId', component: EmployeeEditComponent },
+  { path: 'managerSignUp', component: ManagerSignupComponent }
 ];
 
 @NgModule({
