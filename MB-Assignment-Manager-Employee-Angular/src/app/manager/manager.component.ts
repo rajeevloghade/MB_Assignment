@@ -12,7 +12,6 @@ export class ManagerComponent implements OnInit {
   public loginStatus: any = false;
   public manager = new Manager();
   public loginFailed: boolean = false;
-  public loginMode: boolean = false;
 
   constructor(private _managerService: ManagerService, private route: Router) {}
 
@@ -44,11 +43,6 @@ export class ManagerComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('loginMode : ', this.loginMode);
     this.managerLoginVerification();
-  }
-  onModeSwitch() {
-    this.loginMode = !this.loginMode;
-    console.log('loginMode : ', this.loginMode);
   }
 }
