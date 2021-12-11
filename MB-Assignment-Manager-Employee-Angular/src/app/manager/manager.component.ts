@@ -12,8 +12,9 @@ export class ManagerComponent implements OnInit {
   public loginStatus: any = false;
   public manager = new Manager();
   public loginFailed: boolean = false;
+  public loginMode: boolean = false;
 
-  constructor(private _managerService: ManagerService,private route:Router) {}
+  constructor(private _managerService: ManagerService, private route: Router) {}
 
   ngOnInit(): void {}
 
@@ -24,22 +25,30 @@ export class ManagerComponent implements OnInit {
       .subscribe((status) => {
         this.loginStatus = status;
         console.log('login Status : ', this.loginStatus);
-        if(this.loginStatus){
+        if (this.loginStatus) {
           this.redirectToEmployeeList();
-        }else{
-          this.loginFailed=true;
+        } else {
+          this.loginFailed = true;
           this.redirectToManagerLogin();
         }
       });
   }
-  redirectToManagerLogin() { 
+  redirectToManagerLogin() {
     this.route.navigate(['/managerLogin']);
   }
   redirectToEmployeeList() {
     this.route.navigate(['/employeeList']);
   }
+  redirectToManagerSignUp() {
+    this.route.navigate(['/managerSignUp']);
+  }
 
   onSubmit() {
+    console.log('loginMode : ', this.loginMode);
     this.managerLoginVerification();
+  }
+  onModeSwitch() {
+    this.loginMode = !this.loginMode;
+    console.log('loginMode : ', this.loginMode);
   }
 }

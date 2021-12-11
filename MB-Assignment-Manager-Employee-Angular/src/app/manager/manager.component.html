@@ -23,8 +23,11 @@
                     <small class="text-danger" [class.d-none]='password.valid || password.untouched'>Password is
                         required</small>
                 </div>
-                <button type="submit" class="btn btn-black">Login</button>
-                <button style="margin-left: 1%;" type="submit" class="btn btn-secondary">Register</button>
+                <button type="submit" class="btn btn-black btn-block">{{loginMode ? "Sign up" : "Login"}}</button>
+                <small>{{loginMode ? "Already have account?" : "Don't have account? "}}</small>
+                <small class="text-primary" *ngIf='loginMode' (click)='onModeSwitch()'>Sign in</small>
+                <small class="text-primary" *ngIf='!loginMode' (click)='onModeSwitch(); redirectToManagerSignUp()'>Create one</small>
+
             </form>
             <div [hidden]="!loginFailed">
                 <small class="text-danger">Login failed! Please try again</small>
