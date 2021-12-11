@@ -1,16 +1,18 @@
 package com.assignment.controller;
 
 import org.slf4j.Logger;
-
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.assignment.model.Manager;
 import com.assignment.service.IManagerService;
 
 @CrossOrigin("*")
@@ -34,5 +36,12 @@ public class ManagerRestImpl implements IManagerRest {
 			@RequestParam("password") String password) {
 		log.trace("@managerLoginVerification in controller invoked with email: {} and password: {}", email, password);
 		return managerService.managerLoginVerification(email, password);
+	}
+
+	@PostMapping("/managerSignup")
+	@Override
+	public Manager managerSignUp(@RequestBody Manager manager) {
+		log.trace("@managerSignUp in controller invoked with manager: {}", manager);
+		return managerService.managerSignUp(manager);
 	}
 }

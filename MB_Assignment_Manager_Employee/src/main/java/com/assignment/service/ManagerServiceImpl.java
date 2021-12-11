@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.assignment.dao.IManagerDao;
+import com.assignment.exception.SomethingWentWrong;
 import com.assignment.model.Manager;
 
 @Service("ManagerServiceImpl")
@@ -30,6 +31,23 @@ public class ManagerServiceImpl implements IManagerService {
 			}
 		}
 		return exist;
+	}
+
+	@Override
+	public Manager managerSignUp(Manager manager) {
+		log.info("@managerSignUp invoked with new managerObject : {}", manager);
+		Manager newManager = null;
+		try {
+			if (managerLoginVerification(manager.getEmail(), manager.getPassword())) {
+				log.info("@managerSignUp got exception");
+				throw new SomethingWentWrong();
+			} else {
+				newManager = managerDao.save(manager);
+			}
+		} catch (SomethingWentWrong somethingWentWrong) {
+			log.info("Manager already exist with this email...!", somethingWentWrong);
+		}
+		return newManager;
 	}
 
 }
