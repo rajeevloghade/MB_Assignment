@@ -1,10 +1,11 @@
 package com.assignment.controller;
 
 import com.assignment.model.Manager;
+import com.assignment.model.Response;
 
 public interface IManagerRest {
 
-	Boolean managerLoginVerification(String email, String password);
+	Response managerLoginVerification(String email, String password);
 
 	Manager managerSignUp(Manager manager);
 }

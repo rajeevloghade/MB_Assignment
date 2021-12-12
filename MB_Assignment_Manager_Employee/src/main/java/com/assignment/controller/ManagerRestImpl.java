@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.assignment.model.Manager;
+import com.assignment.model.Response;
 import com.assignment.service.IManagerService;
 
 @CrossOrigin("*")
@@ -32,10 +33,14 @@ public class ManagerRestImpl implements IManagerRest {
 
 	@GetMapping("/managerLoginVerification")
 	@Override
-	public @ResponseBody Boolean managerLoginVerification(@RequestParam("email") String email,
+	public @ResponseBody Response managerLoginVerification(@RequestParam("email") String email,
 			@RequestParam("password") String password) {
 		log.trace("@managerLoginVerification in controller invoked with email: {} and password: {}", email, password);
-		return managerService.managerLoginVerification(email, password);
+		 Manager manager = managerService.managerLoginVerification(email, password);
+		 if(manager!=null)
+			 return new Response("200", true, "Manager Exist", manager);
+		 else
+			 return new Response("000", false, "Manager Doesn't Exist", null);
 	}
 
 	@PostMapping("/managerSignup")

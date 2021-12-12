@@ -1,7 +1,7 @@
 package com.assignment.exception;
 
 public class SomethingWentWrong extends RuntimeException {
-	
+
 	private String message;
 
 	public SomethingWentWrong() {

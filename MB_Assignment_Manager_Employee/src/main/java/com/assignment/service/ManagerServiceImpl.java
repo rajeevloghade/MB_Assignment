@@ -17,20 +17,19 @@ public class ManagerServiceImpl implements IManagerService {
 	private @Autowired IManagerDao managerDao;
 
 	@Override
-	public Boolean managerLoginVerification(String email, String password) {
+	public Manager managerLoginVerification(String email, String password) {
 		log.info("@managerLoginVerification in service invoked with email: {} and password: {}", email, password);
 		Manager managerByEmail = managerDao.getManagerByEmail(email);
-		Boolean exist = false;
 		if (managerByEmail != null) {
 			if (managerByEmail.getEmail().equals(email) && managerByEmail.getPassword().equals(password)) {
 				log.info("Manager Exist");
-				exist = true;
+				return managerByEmail;
 			} else {
 				log.info("Manager Doesn't Exist");
-				exist = false;
+				return null;
 			}
 		}
-		return exist;
+		return managerByEmail;
 	}
 
 	@Override
@@ -38,7 +37,7 @@ public class ManagerServiceImpl implements IManagerService {
 		log.info("@managerSignUp invoked with new managerObject : {}", manager);
 		Manager newManager = null;
 		try {
-			if (managerLoginVerification(manager.getEmail(), manager.getPassword())) {
+			if (isManagerExist(manager.getEmail())) {
 				log.info("@managerSignUp got exception");
 				throw new SomethingWentWrong();
 			} else {
@@ -50,4 +49,20 @@ public class ManagerServiceImpl implements IManagerService {
 		return newManager;
 	}
 
+	@Override
+	public Boolean isManagerExist(String email) {
+		log.info("@isManagerExist in service invoked with email: {}", email);
+		Manager managerByEmail = managerDao.getManagerByEmail(email);
+		Boolean exist = false;
+		if (managerByEmail != null) {
+			if (managerByEmail.getEmail().equals(email)) {
+				log.info("Manager Exist");
+				exist = true;
+			} else {
+				log.info("Manager Doesn't Exist");
+				exist = false;
+			}
+		}
+		return exist;
+	}
 }

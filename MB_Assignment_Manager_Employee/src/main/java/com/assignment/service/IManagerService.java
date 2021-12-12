@@ -4,8 +4,10 @@ import com.assignment.model.Manager;
 
 public interface IManagerService {
 
-	Boolean managerLoginVerification(String email, String password);
+	Manager managerLoginVerification(String email, String password);
 
 	Manager managerSignUp(Manager manager);
+
+	Boolean isManagerExist(String email);
 
 }

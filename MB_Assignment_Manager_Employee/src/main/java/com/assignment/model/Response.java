@@ -3,15 +3,15 @@ package com.assignment.model;
 public class Response {
 
 	private String code;
-	private String status;
+	private Boolean status;
 	private String message;
-	private String payload;
+	private Object payload;
 
 	public Response() {
 		super();
 	}
 
-	public Response(String code, String status, String message, String payload) {
+	public Response(String code, Boolean status, String message, Object payload) {
 		super();
 		this.code = code;
 		this.status = status;
@@ -27,11 +27,11 @@ public class Response {
 		this.code = code;
 	}
 
-	public String getStatus() {
+	public Boolean getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Boolean status) {
 		this.status = status;
 	}
 
@@ -43,11 +43,11 @@ public class Response {
 		this.message = message;
 	}
 
-	public String getPayload() {
+	public Object getPayload() {
 		return payload;
 	}
 
-	public void setPayload(String payload) {
+	public void setPayload(Object payload) {
 		this.payload = payload;
 	}
 
