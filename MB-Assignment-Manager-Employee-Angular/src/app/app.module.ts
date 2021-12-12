@@ -5,10 +5,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ManagerSignupComponent } from './manager-signup/manager-signup.component';
 
 @NgModule({
-  declarations: [AppComponent, routingComponents, ManagerSignupComponent],
+  declarations: [AppComponent, routingComponents],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],

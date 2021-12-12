@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import {
   HttpClient,
-  HttpErrorResponse,
   HttpParams,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Manager } from 'src/manager';
+import { Response } from 'src/Response';
 
 @Injectable({
   providedIn: 'root',
@@ -18,11 +18,11 @@ export class ManagerService {
   managerLoginVerification(
     email: string,
     password: string
-  ): Observable<Object> {
+  ): Observable<Response> {
     const params = new HttpParams()
       .set('email', email)
       .set('password', password);
-    return this._httpService.get(this.url + 'managerLoginVerification', {
+    return this._httpService.get<Response>(this.url + 'managerLoginVerification', {
       params,
     });
   }

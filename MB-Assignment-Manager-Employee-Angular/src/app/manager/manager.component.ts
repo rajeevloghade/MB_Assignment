@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Manager } from 'src/manager';
+import { Response } from 'src/Response';
 import { ManagerService } from '../manager.service';
 
 @Component({
@@ -13,7 +14,10 @@ export class ManagerComponent implements OnInit {
   public manager = new Manager();
   public loginFailed: boolean = false;
 
-  constructor(private _managerService: ManagerService, private router: Router) {}
+  constructor(
+    private _managerService: ManagerService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
@@ -21,11 +25,12 @@ export class ManagerComponent implements OnInit {
     console.log(this.manager.email, this.manager.password);
     this._managerService
       .managerLoginVerification(this.manager.email, this.manager.password)
-      .subscribe((status) => {
-        this.loginStatus = status;
+      .subscribe((response: Response) => {
+        this.loginStatus = response.status;
+        this.manager = response.payload;
         console.log('login Status : ', this.loginStatus);
         if (this.loginStatus) {
-          this.redirectToEmployeeList();
+          this.redirectToEmployeeList(this.manager.managerId);
         } else {
           this.loginFailed = true;
           this.redirectToManagerLogin();
@@ -35,8 +40,8 @@ export class ManagerComponent implements OnInit {
   redirectToManagerLogin() {
     this.router.navigate(['/managerLogin']);
   }
-  redirectToEmployeeList() {
-    this.router.navigate(['/employeeList']);
+  redirectToEmployeeList(managerId: number) {
+    this.router.navigate(['/employeeList', managerId]);
   }
   redirectToManagerSignUp() {
     this.router.navigate(['/managerSignUp']);

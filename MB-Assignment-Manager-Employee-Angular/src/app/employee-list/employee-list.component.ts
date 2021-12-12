@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Employee } from 'src/employee';
 import { EmployeeService } from '../employee.service';
 
@@ -10,14 +10,20 @@ import { EmployeeService } from '../employee.service';
 })
 export class EmployeeListComponent implements OnInit {
   public employees: Employee[] = [];
-  public employeeName: string ='';
+  public employeeName: string = '';
+  public managerId: number | undefined;
   constructor(
     private _employeeService: EmployeeService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.getAllEmployee();
+    //getting manager id
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.managerId=parseInt(params.get('managerId') as string);
+    });
   }
 
   getAllEmployee() {
@@ -53,5 +59,8 @@ export class EmployeeListComponent implements OnInit {
         this.employees = employeeByName;
         console.log(this.employees);
       });
+  }
+  getManagerById(){
+    this.router.navigate(['/managerDetails', this.managerId]);
   }
 }
