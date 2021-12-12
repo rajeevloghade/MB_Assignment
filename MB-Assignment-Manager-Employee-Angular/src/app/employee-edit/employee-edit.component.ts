@@ -17,12 +17,12 @@ export class EmployeeEditComponent implements OnInit {
 
   constructor(
     private _employeeService: EmployeeService,
-    private router: ActivatedRoute,
-    private route: Router
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.router.paramMap.subscribe((param: ParamMap) => {
+    this.route.paramMap.subscribe((param: ParamMap) => {
       this.employeeId = parseInt(param.get('employeeId') as string);
       this.getEmployeeById(this.employeeId);
     });
@@ -55,7 +55,7 @@ export class EmployeeEditComponent implements OnInit {
   }
 
   gotoEmployeeList() {
-    this.route.navigate(['employeeList']);
+    this.router.navigate(['employeeList']);
   }
 
   private reset() {

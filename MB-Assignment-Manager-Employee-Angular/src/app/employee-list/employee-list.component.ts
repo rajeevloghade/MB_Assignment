@@ -13,7 +13,7 @@ export class EmployeeListComponent implements OnInit {
   public employeeName: string ='';
   constructor(
     private _employeeService: EmployeeService,
-    private route: Router
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -35,14 +35,14 @@ export class EmployeeListComponent implements OnInit {
   }
 
   getEmployeeById(employeeId: number) {
-    this.route.navigate(['employeeDetails', employeeId]);
+    this.router.navigate(['employeeDetails', employeeId]);
   }
 
   goToAddEmployee() {
-    this.route.navigate(['addEmployee']);
+    this.router.navigate(['addEmployee']);
   }
   updateEmployee(employeeId: number) {
-    this.route.navigate(['updateEmployee', employeeId]);
+    this.router.navigate(['updateEmployee', employeeId]);
   }
 
   searchEmployee() {

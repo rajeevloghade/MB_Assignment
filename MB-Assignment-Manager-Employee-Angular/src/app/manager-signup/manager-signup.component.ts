@@ -14,7 +14,7 @@ export class ManagerSignupComponent implements OnInit {
   public address = new Address();
   public submitted = false;
 
-  constructor(private _managerService: ManagerService, private route: Router) {}
+  constructor(private _managerService: ManagerService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -34,10 +34,10 @@ export class ManagerSignupComponent implements OnInit {
       });
   }
   redirectToManagerLogin() {
-    this.route.navigate(['/managerLogin']);
+    this.router.navigate(['/managerLogin']);
   }
   redirectToManagerSignUp() {
-    this.route.navigate(['/managerSignUp']);
+    this.router.navigate(['/managerSignUp']);
   }
 
   private reset() {

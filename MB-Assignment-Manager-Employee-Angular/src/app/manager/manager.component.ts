@@ -13,7 +13,7 @@ export class ManagerComponent implements OnInit {
   public manager = new Manager();
   public loginFailed: boolean = false;
 
-  constructor(private _managerService: ManagerService, private route: Router) {}
+  constructor(private _managerService: ManagerService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -33,13 +33,13 @@ export class ManagerComponent implements OnInit {
       });
   }
   redirectToManagerLogin() {
-    this.route.navigate(['/managerLogin']);
+    this.router.navigate(['/managerLogin']);
   }
   redirectToEmployeeList() {
-    this.route.navigate(['/employeeList']);
+    this.router.navigate(['/employeeList']);
   }
   redirectToManagerSignUp() {
-    this.route.navigate(['/managerSignUp']);
+    this.router.navigate(['/managerSignUp']);
   }
 
   onSubmit() {
