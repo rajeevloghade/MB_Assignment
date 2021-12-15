@@ -8,4 +8,7 @@ public interface IManagerRest {
 	Response managerLoginVerification(String email, String password);
 
 	Manager managerSignUp(Manager manager);
+
+	Manager getManagerById(Integer managerId);
+
 }

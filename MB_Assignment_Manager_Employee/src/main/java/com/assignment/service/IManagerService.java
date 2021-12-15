@@ -10,4 +10,6 @@ public interface IManagerService {
 
 	Boolean isManagerExist(String email);
 
+	Manager getManagerById(Integer managerId);
+
 }

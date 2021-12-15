@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,11 +37,11 @@ public class ManagerRestImpl implements IManagerRest {
 	public @ResponseBody Response managerLoginVerification(@RequestParam("email") String email,
 			@RequestParam("password") String password) {
 		log.trace("@managerLoginVerification in controller invoked with email: {} and password: {}", email, password);
-		 Manager manager = managerService.managerLoginVerification(email, password);
-		 if(manager!=null)
-			 return new Response("200", true, "Manager Exist", manager);
-		 else
-			 return new Response("000", false, "Manager Doesn't Exist", null);
+		Manager manager = managerService.managerLoginVerification(email, password);
+		if (manager != null)
+			return new Response("200", true, "Manager Exist", manager);
+		else
+			return new Response("000", false, "Manager Doesn't Exist", null);
 	}
 
 	@PostMapping("/managerSignup")
@@ -48,5 +49,12 @@ public class ManagerRestImpl implements IManagerRest {
 	public Manager managerSignUp(@RequestBody Manager manager) {
 		log.trace("@managerSignUp in controller invoked with manager: {}", manager);
 		return managerService.managerSignUp(manager);
+	}
+
+	@GetMapping("/getManagerByEmployeeId/{managerId}")
+	@Override
+	public Manager getManagerById(@PathVariable("managerId") Integer managerId) {
+		log.trace("@getManagerById invoked with managerId : {}", managerId);
+		return managerService.getManagerById(managerId);
 	}
 }

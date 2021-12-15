@@ -1,5 +1,7 @@
 package com.assignment.service;
 
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.assignment.dao.IManagerDao;
 import com.assignment.exception.SomethingWentWrong;
+import com.assignment.model.Employee;
 import com.assignment.model.Manager;
 
 @Service("ManagerServiceImpl")
@@ -65,4 +68,15 @@ public class ManagerServiceImpl implements IManagerService {
 		}
 		return exist;
 	}
+
+	@Override
+	public Manager getManagerById(Integer managerId) {
+		log.info("@getManagerById invoked with managerId : {}", managerId);
+		Optional<Manager> managerById = managerDao.findById(managerId);
+		Manager managerModel = null;
+		if (managerById.isPresent())
+			managerModel = managerById.get();
+		return managerModel;
+	}
+
 }
